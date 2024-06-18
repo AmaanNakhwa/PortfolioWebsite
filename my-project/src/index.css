@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+  body{
+    /* background-color: #20242D; */
+    background-color: #ffffff;
+    font-family: 'poppins',sans-serif;
+    font-weight: 800;
+    color: #333333;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .dark body{
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'poppins',sans-serif;
+    font-weight: 800;
+  }
+
+  span,
+.primary-color {
+  background-image: linear-gradient(to right, #FFC51A, #EFB310);
+  -webkit-background-clip: text;
+  color: transparent;
+  
+}
+.bg-primary-color{
+  background-image: linear-gradient(to right,#FFC51A, #EFB310);
+}
+
+.image-glow {
+  position: relative;
+  display: inline-block; /* Or block, depending on your layout */
+}
+
+.image-glow::before {
+  content: '';
+  position: absolute;
+  top: -5px; /* Adjust the value to control the glow size */
+  left: -5px; /* Adjust the value to control the glow size */
+  right: -5px; /* Adjust the value to control the glow size */
+  bottom: -5px;
+  transition-duration: 1000ms;
+  opacity: 0.7; /* Adjust the value to control the glow size */
+  background-image: linear-gradient(to right, #FFC51A, #EFB310);
+  filter: blur(16px); /* Adjust the blur radius for the size of the glow */
+  z-index: -1;
+}
+
+.image-glow:hover::before {
+  top: -5px; /* Larger value for a more pronounced glow on hover */
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  filter: blur(16px);
+  opacity: 1;
+  transition-duration: 200ms; /* Larger blur for a more pronounced glow on hover */
+}
