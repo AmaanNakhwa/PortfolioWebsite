@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdEmail } from "react-icons/md";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 
 const validationSchema = Yup.object({
@@ -15,6 +16,9 @@ const validationSchema = Yup.object({
   });
 
 const Contact = () => {
+
+  const [submitStatus, setSubmitStatus] = useState(null);
+
      // Initialize Formik
   const formik = useFormik({
     initialValues: {
@@ -23,20 +27,32 @@ const Contact = () => {
       message: ''
     },
     validationSchema,
-    onSubmit: values => {
-      // Handle form submission
-      console.log(values);
-      // You would typically send these values to a server here
+    onSubmit: (values, { setSubmitting, resetForm }) => {
+      // Here we're using Axios to send the form data to the backend
+      axios.post('https://portfolio-backend-1-hos3.onrender.com/api/contact/', values)
+        .then(response => {
+          // Handle success
+          console.log("Form submitted successfully", response.data);
+          // Optionally reset the form
+          setSubmitStatus('success');
+          resetForm({});
+        })
+        .catch(error => {
+          // Handle error
+          console.error("There was an error submitting the form", error);
+          setSubmitStatus('error');
+        })
+        .finally(() => {
+          // Finally, set submitting to false
+          setSubmitting(false);
+        });
     },
   });
-
-
-
-
 
   return (    
     <div className="flex justify-center my-5 h-full sm:h-[70vh] items-center" >
         <div className="max-w-[1200px] mx-auto">
+
         
                 <div className="grid grid-cols-l md:grid-cols-2 ">
                 <div className="p-6 mr-2 bg-[#e5e7eb] dark:bg-[#212121] rounded-xl flex flex-col justify-around" >
@@ -95,13 +111,27 @@ const Contact = () => {
                         <div>{formik.errors.message}</div>
                         ) : null}              
                     </div>
-                    
-                    
+
+                    <div className="flex flex-col mt-2 ">
+                        {/* Feedback UI  */}
+                        {submitStatus === 'success' && (
+                          <div className="success-message ">
+                            <p className=""> Your message has been sent successfully! </p>
+                          </div>
+                        )}
+                        {submitStatus === 'error' && (
+                          <div className="error-message ">
+                            There was an error sending your message. Please try again later.
+                          </div>
+                        )}
+                    </div>  
+
                     <div className="relative inline-flex group my-3">
                     <div className="absolute inset-0 transition-all duration-1000 opacity-70 bg-gradient-to-r from-[#FFC51A] via-[#EFB310] to-[#FFECB3] rounded-xl blur-lg group-hover:opacity-100 group-hover:duration-200">
                     </div>
                     <button
                     type="submit"
+                    disabled={formik.isSubmitting}
                     className="md:w-64 relative inline-flex items-center justify-center w-[190px] h-[60px] px-8 py-4 text-lg font-bold dark:text-white transition-all duration-200 bg-primary-color rounded-xl font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
                     Submit
                     </button>
