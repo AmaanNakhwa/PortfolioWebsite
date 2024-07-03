@@ -21,12 +21,12 @@ const Work = () => {
             
             
             <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:gap-6 x1:gap-8">
-
-            <a href="https://merry-rolypoly-da0b7e.netlify.app/" class="image-glow group h-48 overflow-hidden rounded-lg shadow-lg md:h-80">
-                < img src={proj1} alt="" class="h-full w-full object-cover object-center transition
+            
+            <a href="https://merry-rolypoly-da0b7e.netlify.app/" className="group h-48 overflow-hidden rounded-lg shadow-lg md:h-80">
+                < img src={proj1} alt="" className="h-full w-full object-cover object-center transition
                                                 duration-200 group-hover:scale-110" />   
             </a>
-          
+            
 
             <a href="https://666561fe74013c9c4b6bed1f--warm-faun-ae7296.netlify.app/" class="group h-48 overflow-hidden rounded-lg shadow-lg md:col-span-2 md:h-80">
                 < img src={proj2} alt="" class="h-full w-full object-cover object-center transition
