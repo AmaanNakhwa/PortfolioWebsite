@@ -9,7 +9,9 @@ const Navbar = () => {
     const handleNav = () => {
         setNav(!nav)
     }
-
+    const closeNav = () => {
+        setNav(false); // This will close the nav when a link is clicked
+    };
 
   return (  
     <div className='z-10 flex justify-between items-center max-w[1240px] mx-auto h-24 px-4 text-l'>
@@ -32,14 +34,14 @@ const Navbar = () => {
             {nav ? <AiOutlineClose size={20}/> : <AiOutlineMenu size={20}/>}
         </div>
 
-        <div className={nav ? 'z-10  fixed h-full left-0 top-0 w-[60%] border-r-gray-900 bg-[#d1d5db] dark:bg-[#121212]  ease-in-out duration-500'
+        <div className={nav ? 'z-10   fixed h-full left-0 top-0 w-[60%] border-r-gray-900 bg-[#d1d5db] dark:bg-[#121212]  ease-in-out duration-500'
             : 'fixed left-[-100%]'}>
         <h1 className='text-3xl primary-color m-4'>A. Nakhwa</h1>
         <ul className='p-8 text-2xl'>
-        <li className='p-2'> <Link to="/">Home</Link> </li>
-            <li className='p-2'> <Link to="/about">About</Link> </li>
-            <li className='p-2'> <Link to="/work">Work</Link> </li>
-            <li className='p-2'> <Link to="/contacts">Contacts</Link></li>
+        <li className='p-2'> <Link to="/" onClick={closeNav}>Home</Link> </li>
+        <li className='p-2'> <Link to="/about" onClick={closeNav}>About</Link> </li>
+        <li className='p-2'> <Link to="/work" onClick={closeNav}>Work</Link> </li>
+        <li className='p-2'> <Link to="/contacts" onClick={closeNav}>Contacts</Link></li>
         </ul>
         </div>
 
