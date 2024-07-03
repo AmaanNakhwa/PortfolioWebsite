@@ -16,7 +16,7 @@ const Navbar = () => {
   return (  
     <div className='z-10 flex justify-between items-center max-w[1240px] mx-auto h-24 px-4 text-l'>
         
-        <h1 className='text-3xl font-bold primary-color ml-4'>A. Nakhwa</h1>
+        <h1 className='text-3xl font-bold primary-color ml-4'> <Link to="/">A. Nakhwa</Link></h1>
         
         <ul className='hidden md:flex'>
             <li className='p-5'> <Link to="/">Home</Link> </li>
