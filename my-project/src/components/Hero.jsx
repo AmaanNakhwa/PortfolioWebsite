@@ -51,12 +51,16 @@ const Hero = () => {
         Github Repos
         </a>
         </div>
-    </div>    
-        <div className='image-glow my-auto'>
-        
-            <img className='w-[300px] sm:w-[500px] rounded-lg mx-auto h-auto' src={profilepic1} alt="profile pic" />
+    </div> 
+    <div className='mx-auto'>   
+        <div className='image-glow  my-auto'>
+            <img 
+            src={profilepic1} 
+            alt="profile pic" 
+            className='object-cover w-[300px] sm:w-[500px] rounded-lg mx-auto h-auto'
+            />
         </div>
-
+    </div>
         </div>
         </div>  
     
